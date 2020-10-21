@@ -1,0 +1,48 @@
+$style: 'js-start';
+.#{$style} {
+    padding: 100px 0;
+    &__row {
+        width: 100%;
+        display: flex;
+    }
+    &__title {
+        font-size: 40px;
+        color: beige;
+        margin-bottom: 20px;
+    }
+    &__lesson-title {
+        font-size: 30px;
+        color: beige;
+        margin-bottom: 20px;
+    }
+    &__block-wrapper {
+        width: 33%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    &__btn {
+        height: 60px;
+        width: 100%;
+        max-width: 50%;
+
+        cursor: pointer;
+        background-color: rgba(236, 229, 229);
+        outline: none;
+
+        font-size: 16px;
+        color:rgb(97, 97, 97);
+        
+        margin-bottom: 8px;
+        transition: background-color 0.4s ease, color 0.4s ease;
+        &:last-child {
+            margin-bottom: 0;
+        }
+        &:hover {
+            background-color: darken(rgba(236, 229, 229), 10%);
+            color: azure;
+        }
+    }
+}
