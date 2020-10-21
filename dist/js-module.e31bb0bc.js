@@ -263,7 +263,7 @@ if (thirdQ == 3) {
 
 alert('Your rating is' + ' ' + rating); // Запросить дату (день, месяц, год) и вывести следующую за ней дату. Учтите возможность перехода на следующий месяц, год, а также високосный год.
 
-var date = new Date(prompt('Enter any date in mm-dd-year format'));
+var date = new Date(prompt('Enter any date in mm.dd.year format'));
 date.setDate(date.getDate() + 1);
 alert(date);
 },{}],"../../../AppData/Local/Yarn/Data/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -294,7 +294,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52123" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54758" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

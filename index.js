@@ -128,7 +128,7 @@ if (firstQ == 1) {
 alert('Your rating is' + ' ' + rating);
 
 // Запросить дату (день, месяц, год) и вывести следующую за ней дату. Учтите возможность перехода на следующий месяц, год, а также високосный год.
-let date = new Date(prompt('Enter any date in mm-dd-year format'));
+let date = new Date(prompt('Enter any date in mm.dd.year format'));
 date.setDate(date.getDate() + 1);
 
 alert(date);
