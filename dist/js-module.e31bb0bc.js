@@ -271,19 +271,19 @@ taskTwoBtnTwo.addEventListener("click", function () {
 var taskTwoBtnThree = document.getElementById("task2.3");
 taskTwoBtnThree.addEventListener("click", function () {
   var threeDigNum = prompt("Enter any three-digit number", 0);
-  threeDigNum[0] == threeDigNum[1] || threeDigNum[1] == threeDigNum[2] || threeDigNum[2] == threeDigNum[0] ? alert("have same numbers") : alert("don`t have same numbers");
+  threeDigNum[0] === threeDigNum[1] || threeDigNum[1] === threeDigNum[2] || threeDigNum[2] === threeDigNum[0] ? alert("have same numbers") : alert("don`t have same numbers");
 }); // // Запросить у пользователя год и проверить, високосный он или нет. Високосный год либо кратен 400, либо кратен 4 и при этом не кратен 100.
 
 var taskTwoBtnFour = document.getElementById("task2.4");
 taskTwoBtnFour.addEventListener("click", function () {
   var yearToCheck = Number(prompt("Enter expected year", 1700));
-  yearToCheck % 400 == 0 || yearToCheck % 4 == 0 && yearToCheck % 100 !== 0 ? alert("Высокосный год") : alert("Не высокосный год");
+  yearToCheck % 400 === 0 || yearToCheck % 4 === 0 && yearToCheck % 100 !== 0 ? alert("Высокосный год") : alert("Не высокосный год");
 }); // // Запросить у пользователя пятиразрядное число и определить, является ли оно палиндромом
 
 var taskTwoBtnFive = document.getElementById("task2.5");
 taskTwoBtnFive.addEventListener("click", function () {
   var palNum = prompt("Enter any five-digit number", 12345);
-  palNum[0] == palNum[4] && palNum[1] == palNum[3] ? alert("число палиндром") : alert("к сожалению это число не палиндром");
+  palNum[0] === palNum[4] && palNum[1] === palNum[3] ? alert("число палиндром") : alert("к сожалению это число не палиндром");
 }); // // Написать конвертор валют. Пользователь вводит количество USD, выбирает, в какую валюту хочет перевести EUR, UAN или AZN, и получает в ответ соответствующую сумму.
 
 var taskTwoBtnSix = document.getElementById("task2.6");
@@ -399,7 +399,7 @@ taskThreeBtnThree.addEventListener("click", function () {
 
   while (i <= allDivisorNumbers) {
     i++;
-    allDivisorNumbers % i == 0 && i !== allDivisorNumbers ? console.log(i) : false;
+    allDivisorNumbers % i === 0 && i !== allDivisorNumbers ? console.log(i) : false;
   }
 }); // Определить количество цифр в введенном числе
 
@@ -408,7 +408,7 @@ taskThreeBtnFour.addEventListener("click", function () {
   var allNumbersSumm = Number(prompt("Enter any nubmer", 20));
   var i = 0;
 
-  if (allNumbersSumm == 0) {
+  if (allNumbersSumm === 0) {
     i++;
   }
 
@@ -431,7 +431,7 @@ taskThreeBtnFive.addEventListener("click", function () {
   var i = 0;
 
   for (; i < tenNumbers.length; i++) {
-    if (tenNumbers[i] % 2 == 0 && tenNumbers[i] > 0) {
+    if (tenNumbers[i] % 2 === 0 && tenNumbers[i] > 0) {
       evenNum++;
       posNum++;
     } else if (tenNumbers[i] % 2 !== 0 && tenNumbers[i] > 0) {
@@ -443,7 +443,7 @@ taskThreeBtnFive.addEventListener("click", function () {
     } else if (tenNumbers[i] % 2 !== 0 && tenNumbers[i] < 0) {
       oddNum++;
       negNum++;
-    } else if (tenNumbers[i] == 0) {
+    } else if (tenNumbers[i] === 0) {
       zeroNum++;
     } else {
       alert('incorrect number');
@@ -619,6 +619,227 @@ taskThreeBtnTen.addEventListener("click", function () {
         break;
     }
   }
+}); //Function 
+// Написать функцию, которая принимает 2 числа и возвращает -1, если первое меньше, чем второе; 1 – если первое больше, чем второе; и 0 – если числа равны.
+
+var taskFourBtnOne = document.getElementById("task4.1");
+taskFourBtnOne.addEventListener("click", function () {
+  function getComprasion(a, b) {
+    if (a == b) {
+      return 0;
+    } else if (a > b) {
+      return 1;
+    } else {
+      return -1;
+    }
+  }
+
+  ;
+  console.log(getComprasion(1, 2));
+}); // Написать функцию, которая вычисляет факториал переданного ей числа
+
+var taskFourBtnTwo = document.getElementById("task4.2");
+taskFourBtnTwo.addEventListener("click", function () {
+  function getFactorial(a) {
+    var b = 1;
+
+    if (a === 0 || a === 1) {
+      return b;
+    } else {
+      for (var i = 1; i !== a + 1;) {
+        b *= i;
+        i++;
+      }
+
+      return b;
+    }
+
+    ;
+  }
+
+  console.log(getFactorial(5));
+}); // Написать функцию, которая принимает три отдельные цифры и превращает их в одно число. Например: цифры 1, 4, 9 превратятся в число 149.
+
+var taskFourBtnThree = document.getElementById("task4.3");
+taskFourBtnThree.addEventListener("click", function () {
+  function joinNumbers(a, b, c) {
+    var joinedNumbers = [a, b, c].join("");
+    return parseInt(joinedNumbers);
+  }
+
+  console.log(joinNumbers(1, 4, 9));
+}); // Написать функцию, которая принимает длину и ширину прямоугольника и вычисляет его площадь. Если в функцию передали 1 параметр, то она вычисляет площадь квадрата.
+
+var taskFourBtnFour = document.getElementById("task4.4");
+taskFourBtnFour.addEventListener("click", function () {
+  function rectangleArea(rectangleLength, rectangleWidth) {
+    var areaSize = 0;
+    var squarePerimiter = 0;
+
+    if (rectangleLength === undefined || rectangleLength === 0) {
+      squarePerimiter = rectangleWidth * rectangleWidth;
+      return squarePerimiter;
+    } else if (rectangleWidth === undefined || rectangleWidth === 0) {
+      squarePerimiter = rectangleLength * rectangleLength;
+      return squarePerimiter;
+    } else if (rectangleLength < 0 || rectangleWidth < 0) {
+      return "incorrect value";
+    } else {
+      areaSize = rectangleLength * rectangleWidth;
+      return areaSize;
+    }
+  }
+
+  console.log(rectangleArea(3, 5));
+}); // Написать функцию, которая проверяет, является ли переданное ей число совершенным. Совершенное число – это число, равное сумме всех своих собственных делителей.
+
+var taskFourBtnFive = document.getElementById("task4.5");
+taskFourBtnFive.addEventListener("click", function () {
+  function isNumberPerfect(a) {
+    var res = 0;
+
+    if (a === 0) {
+      return false;
+    }
+
+    for (var i = a - 1; i >= 1; i--) {
+      if (a % i === 0) {
+        res += i;
+      }
+    }
+
+    if (res === a) {
+      return "Number is perfect";
+    } else {
+      return "Number is not perfect";
+    }
+  }
+
+  console.log(isNumberPerfect(28));
+}); // Написать функцию, которая принимает минимальное и максимальное значения для диапазона, и выводит только те числа из диапазона, которые являются совершенными. 
+// Используйте написанную ранее функцию, чтобы узнавать, совершенное число или нет. 
+
+var taskFourBtnSix = document.getElementById("task4.6");
+taskFourBtnSix.addEventListener("click", function () {
+  function isNumberInRangePerfect(a, b) {
+    var perfectNumbers = [];
+
+    function isNumberPerfect(a) {
+      var res = 0;
+
+      if (a === 0) {
+        return false;
+      }
+
+      for (var i = a - 1; i >= 1; i--) {
+        if (a % i === 0) {
+          res += i;
+        }
+      }
+
+      if (res === a) {
+        return "Number is perfect";
+      } else {
+        return "Number is not perfect";
+      }
+    }
+
+    if (b > a && b !== 0) {
+      for (var i = b; i >= a; i--) {
+        if (isNumberPerfect(i) === "Number is perfect") {
+          perfectNumbers.push(i);
+        }
+      }
+    } else if (a > b && a !== 0) {
+      for (var _i = a; _i >= b; _i--) {
+        if (isNumberPerfect(_i) === "Number is perfect") {
+          perfectNumbers.push(_i);
+        }
+      }
+    } else if (a === b) {
+      console.log(isNumberPerfect(a));
+    }
+
+    if (b > a && b === 0) {
+      return false;
+    } else if (a > b && a === 0) {
+      return false;
+    } else if (a === 0 && b === 0) {
+      return false;
+    }
+
+    return perfectNumbers.join(',');
+  }
+
+  console.log(isNumberInRangePerfect(1, 29));
+}); // Написать функцию, которая принимает время (часы, минуты, секунды) и выводит его на экран в формате «чч:мм:сс».
+// Если при вызове функции минуты и/или секунды не были переданы, то выводить их как 00.
+
+var taskFourBtnSeven = document.getElementById("task4.7");
+taskFourBtnSeven.addEventListener("click", function () {
+  function setTime(hours) {
+    var min = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    var sec = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+    var date = new Date();
+    date.setHours(hours, min, sec);
+    return date.toLocaleString(navigator.language, {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    });
+  }
+
+  console.log(setTime(9, 15, 44));
+}); // Написать функцию, которая принимает часы, минуты и секунды и возвращает это время в секундах.
+
+var taskFourBtnEight = document.getElementById("task4.8");
+taskFourBtnEight.addEventListener("click", function () {
+  function toSeconds(hour) {
+    var min = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    var sec = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+    return 3600 * hour + 60 * min + sec;
+  }
+
+  console.log(toSeconds(10, 15, 44));
+}); // Написать функцию, которая принимает количество секунд, переводит их в часы, минуты и секунды и возвращает в виде строки «чч:мм:сс».
+
+var taskFourBtnNine = document.getElementById("task4.9");
+taskFourBtnNine.addEventListener("click", function () {
+  function secToHours() {
+    var sec = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    var hours = Math.floor(sec / 60 / 60);
+    var minutes = Math.floor(sec / 60) - hours * 60;
+    var seconds = sec % 60;
+    var formatted = [hours.toString().padStart(2, '0'), minutes.toString().padStart(2, '0'), seconds.toString().padStart(2, '0')].join(':');
+    return formatted;
+  }
+
+  console.log(secToHours(5374));
+}); // Написать функцию, которая считает разницу между датами. Функция принимает 6 параметров, которые описывают 2 даты, и возвращает результат в виде строки «чч:мм:сс». 
+// При выполнении задания используйте функции из предыдущих 2-х заданий: сначала обе даты переведите в секунды, узнайте разницу в секундах, а потом разницу переведите обратно в «чч:мм:сс»
+
+var taskFourBtnTen = document.getElementById("task4.10");
+taskFourBtnTen.addEventListener("click", function () {
+  function toSeconds(hour) {
+    var min = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    var sec = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+    return 3600 * hour + 60 * min + sec;
+  }
+
+  var timeOne = toSeconds(10, 15, 44);
+  var timeTwo = toSeconds(9, 10, 40);
+  var newTime = timeOne - timeTwo;
+
+  function secToHours() {
+    var sec = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    var hours = Math.floor(sec / 60 / 60);
+    var minutes = Math.floor(sec / 60) - hours * 60;
+    var seconds = sec % 60;
+    var formatted = [hours.toString().padStart(2, '0'), minutes.toString().padStart(2, '0'), seconds.toString().padStart(2, '0')].join(':');
+    return formatted;
+  }
+
+  console.log(secToHours(newTime));
 });
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -648,7 +869,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53905" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51234" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
