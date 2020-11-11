@@ -13,6 +13,11 @@ body {
   background-color: #616161;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -46,12 +51,16 @@ body {
   flex-basis: 33%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   margin-bottom: 20px;
 }
 .js-start__block-wrapper:last-child {
   margin-bottom: 0;
+}
+.js-start__btn-wrapper {
+  width: 100%;
+  max-width: 50%;
+  margin-bottom: 8px;
 }
 .js-start__btn {
   height: 60px;
@@ -71,6 +80,9 @@ body {
 .js-start__btn:hover {
   background-color: #d6c8c8;
   color: azure;
+}
+.js-start__btn--link {
+  max-width: 100%;
 }
 
 /*# sourceMappingURL=/style.ff1c4cab.css.map */
