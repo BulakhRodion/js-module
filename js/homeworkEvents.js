@@ -150,7 +150,7 @@ function sortByAge(array) {
 const title1 = document.getElementById("title1");
 title1.onclick = () => {
   remove();
-  createTable(sortedArr, sortByName(sortedArr));
+  createTable(members, sortByName(members));
 };
 const title2 = document.getElementById("title2");
 title2.onclick = () => {
