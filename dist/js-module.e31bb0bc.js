@@ -1512,6 +1512,232 @@ var homeworkArrays = function homeworkArrays() {
 };
 
 exports.homeworkArrays = homeworkArrays;
+},{}],"js/homeworkClasses.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.homeworkClasses = void 0;
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var homeworkClasses = function homeworkClasses() {
+  // 1) Реализовать класс, описывающий окружность. В классе должны быть следующие компоненты:
+  // поле, хранящее радиус окружности;
+  // get-свойство, возвращающее радиус окружности;
+  // set-свойство, устанавливающее радиус окружности;
+  // get-свойство, возвращающее диаметр окружности;
+  // метод, вычисляющий площадь окружности;
+  // метод, вычисляющий длину окружности.
+  // Продемонстрировать работу свойств и методов.
+  var taskSevenBtnOne = document.getElementById("task7.1");
+  taskSevenBtnOne.addEventListener("click", function () {
+    var Circle = /*#__PURE__*/function () {
+      function Circle(params) {
+        _classCallCheck(this, Circle);
+
+        this.params = params;
+      }
+
+      _createClass(Circle, [{
+        key: "getArea",
+        value: function getArea() {
+          return alert("area: ".concat(3.14 * this.params * this.params));
+        }
+      }, {
+        key: "getLenght",
+        value: function getLenght() {
+          return alert("lenght: ".concat(2 * 3.14 * this.params));
+        }
+      }, {
+        key: "radius",
+        get: function get() {
+          return alert(this.params);
+        },
+        set: function set(value) {
+          this.params = value;
+        }
+      }, {
+        key: "diameter",
+        get: function get() {
+          return alert(2 * this.params);
+        }
+      }]);
+
+      return Circle;
+    }();
+
+    var circle = new Circle(3);
+    circle.getArea();
+    circle.getLenght();
+    circle.radius;
+    circle.diameter;
+  }); // 2) Реализовать класс, описывающий простой маркер. В классе должны быть следующие компоненты:
+  // поле, которое хранит цвет маркера;
+  // поле, которое хранит количество чернил в маркере (в процентах);
+  // метод для печати (метод принимает строку и выводит текст соответствующим цветом; текст выводится до тех пор, пока в маркере есть чернила; один не пробельный символ – это 0,5% чернил в маркере).
+  // Реализовать класс, описывающий заправляющийся маркер, унаследовав его от простого маркера и добавив метод для заправки маркера.
+  // Продемонстрировать работу написанных методов.
+
+  var taskSevenBtnTwo = document.getElementById("task7.2");
+  taskSevenBtnTwo.addEventListener("click", function () {
+    var Marker = /*#__PURE__*/function () {
+      function Marker(params) {
+        _classCallCheck(this, Marker);
+
+        this.color = params.color;
+        this.fillLevel = params.fillLevel;
+        this.text = params.text;
+      }
+
+      _createClass(Marker, [{
+        key: "writeText",
+        value: function writeText() {
+          var result = "";
+
+          for (var i in this.text) {
+            result += this.text[i];
+
+            if (this.text[i] != " ") {
+              this.fillLevel -= 0.5;
+            }
+
+            if (this.fillLevel === 0) {
+              document.body.innerHTML = 'You need to fill you marker again';
+              break;
+            }
+          }
+
+          document.body.innerHTML = "<p style=\"color:".concat(this.color, "\">").concat(result, "</p>");
+        }
+      }]);
+
+      return Marker;
+    }();
+
+    var FillMarker = /*#__PURE__*/function (_Marker) {
+      _inherits(FillMarker, _Marker);
+
+      var _super = _createSuper(FillMarker);
+
+      function FillMarker(params) {
+        _classCallCheck(this, FillMarker);
+
+        return _super.call(this, params);
+      }
+
+      _createClass(FillMarker, [{
+        key: "reFill",
+        value: function reFill(answer) {
+          if (answer === true) {
+            return this.fillLevel = 100;
+          }
+        }
+      }]);
+
+      return FillMarker;
+    }(Marker); //тест маркера
+
+
+    var text = prompt("enter any text");
+    var test = new Marker({
+      color: "red",
+      fillLevel: 5,
+      text: text
+    });
+    test.writeText(); //тест перезаливки зависит от ответа confirm
+
+    var filledMarker = new FillMarker({
+      color: "red",
+      fillLevel: 5,
+      text: text
+    });
+    var wantReFill = confirm("do you want to refill marker?");
+    filledMarker.reFill(wantReFill);
+    filledMarker.writeText();
+  }); // 3) Реализовать класс Employee, описывающий работника, и создать массив работников банка.
+  // Реализовать класс EmpTable для генерации HTML-кода таблицы со списком работников банка. Массив работников необходимо передавать через конструктор, а получать HTML-код с помощью метода getHtml().
+  // Создать объект класса EmpTable и вывести на экран результат работы метода getHtml()
+
+  var taskSevenBtnThree = document.getElementById("task7.3");
+  taskSevenBtnThree.addEventListener("click", function () {
+    var Employee = function Employee(person) {
+      _classCallCheck(this, Employee);
+
+      this.name = person.name;
+      this.age = person.age;
+      this.post = person.post;
+      this.experience = person.experience;
+    };
+
+    var stuffList = [new Employee({
+      name: "Alex",
+      age: "age: 25",
+      post: "accauntant",
+      experience: "experience: 2 years"
+    }), new Employee({
+      name: "Alexandra",
+      age: "age: 33",
+      post: "senior accauntant",
+      experience: "experience: 11 years"
+    }), new Employee({
+      name: "Max",
+      age: "age: 20",
+      post: "accauntant",
+      experience: "experience: 1 year"
+    })];
+
+    var EmpTable = /*#__PURE__*/function () {
+      function EmpTable(stuffList) {
+        _classCallCheck(this, EmpTable);
+
+        this.array = stuffList;
+      }
+
+      _createClass(EmpTable, [{
+        key: "getHtml",
+        value: function getHtml() {
+          var result = '<table border="2" bordercolor="red" style="margin: auto; background-color: white">';
+          var table = "</table>";
+
+          for (var i in this.array) {
+            result += "<tr><td>".concat(this.array[i].name, "</td><td>").concat(this.array[i].age, "</td><td>").concat(this.array[i].post, "</td><td>(").concat(this.array[i].experience, ")</td></tr>");
+          }
+
+          document.body.innerHTML = "".concat(result).concat(table);
+        }
+      }]);
+
+      return EmpTable;
+    }();
+
+    var stuffTable = new EmpTable(stuffList);
+    stuffTable.getHtml();
+  });
+};
+
+exports.homeworkClasses = homeworkClasses;
 },{}],"index.js":[function(require,module,exports) {
 "use strict"; //IMPORTS
 
@@ -1527,6 +1753,8 @@ var _homeworkObjects = require("./js/homeworkObjects");
 
 var _homeworkArrays = require("./js/homeworkArrays");
 
+var _homeworkClasses = require("./js/homeworkClasses");
+
 //IMPORT FUNCTIONS
 (0, _homeworkBasicsJs.homeworkBasics)();
 (0, _homeworkDataTypes.homeworkDataTypes)();
@@ -1534,7 +1762,8 @@ var _homeworkArrays = require("./js/homeworkArrays");
 (0, _homeworkFunctions.homeworkFunctions)();
 (0, _homeworkObjects.homeworkObjects)();
 (0, _homeworkArrays.homeworkArrays)();
-},{"./js/homeworkBasicsJs":"js/homeworkBasicsJs.js","./js/homeworkDataTypes":"js/homeworkDataTypes.js","./js/homeworkCycles":"js/homeworkCycles.js","./js/homeworkFunctions":"js/homeworkFunctions.js","./js/homeworkObjects":"js/homeworkObjects.js","./js/homeworkArrays":"js/homeworkArrays.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+(0, _homeworkClasses.homeworkClasses)();
+},{"./js/homeworkBasicsJs":"js/homeworkBasicsJs.js","./js/homeworkDataTypes":"js/homeworkDataTypes.js","./js/homeworkCycles":"js/homeworkCycles.js","./js/homeworkFunctions":"js/homeworkFunctions.js","./js/homeworkObjects":"js/homeworkObjects.js","./js/homeworkArrays":"js/homeworkArrays.js","./js/homeworkClasses":"js/homeworkClasses.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -1562,7 +1791,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58879" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54635" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

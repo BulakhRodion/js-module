@@ -104,7 +104,7 @@ taskFourBtnSix.addEventListener("click", () => {
   const numStart = Number(prompt("Enter starting numeric range value", 1));
   const numEnd = Number(prompt("Enter ending numeric range value to check if there is perfect numbers", 29));
   function isNumberInRangePerfect(a=0, b=0){
-    let perfectNumbers = [];
+    const perfectNumbers = [];
     function isNumberPerfect(a){
       let res = 0;
       if ( a === 0){
@@ -158,7 +158,7 @@ const taskFourBtnSeven = document.getElementById("task4.7");
 taskFourBtnSeven.addEventListener("click", () => {
   const time = prompt("Enter expected hours, minutes and seconds in the specified format to set time", "9, 15, 44").split(", ");
     function setTime(hours,min = 0,sec = 0) {
-        let date = new Date();
+        const date = new Date();
         date.setHours(hours, min, sec);
         return date.toLocaleString(navigator.language, {hour: '2-digit', minute: '2-digit', second: '2-digit'});
     } 

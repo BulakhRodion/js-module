@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "parcel index.html --open",
-    "dev:all": "parcel index.html arrayTask.html slick.html ajax.html --open",
-    "build": "parcel build index.html arrayTask.html slick.html ajax.html --no-source-maps --no-cache"
+    "dev:all": "parcel index.html arrayTask.html slick.html ajax.html DOM.html events.html --open",
+    "build": "parcel build index.html arrayTask.html slick.html ajax.html DOM.html events.html --no-source-maps --no-cache"
   },
   "devDependencies": {
     "cssnano": "^4.1.10",

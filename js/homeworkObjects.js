@@ -6,14 +6,14 @@ export const homeworkObjects = () => {
 // Учтите, что через каждые 4 часа дороги водителю необходимо делать перерыв на 1 час.
 const taskFiveBtnOne = document.getElementById("task5.1");
 taskFiveBtnOne.addEventListener("click", () => {
-  let car = {
+  const car = {
     manufacturer: "Tesla",
     model: "Tesla Model x",
     "manufacture date": 2015,
     "averenge speed": 80,
   }
   function showInfo() {
-    let info = [
+    const info = [
       `Car information
       manufacturer: ${car.manufacturer} 
       model: ${car.model}
@@ -48,17 +48,18 @@ taskFiveBtnOne.addEventListener("click", () => {
 // Функция сокращения объекта-дроби.
 const taskFiveBtnTwo = document.getElementById("task5.2");
 taskFiveBtnTwo.addEventListener("click", () => {
-  let fraction = {
+  const fraction = {
     num: 2,
     denom: 4,
   }
   const firstValue = Number(prompt("Enter numerator", 2));
   const secondValue = Number(prompt("Enter denominator", 4));
-  let fractionSecond = {
+  const fractionSecond = {
     num: firstValue,
     denom: secondValue,
   }
   let resultNum = 0;
+  
   function lcm(a, b){
     let resultLCM = a * b
     while (a != 0 && b != 0){
@@ -208,7 +209,7 @@ taskFiveBtnThree.addEventListener("click", () => {
   }
 
   function setTime() {
-    let formattedTime = new Date();
+    const formattedTime = new Date();
     formattedTime.setHours(time.hours, time.minutes, time.seconds);
     return formattedTime.toLocaleString(navigator.language, {hour: '2-digit', minute: '2-digit', second: '2-digit'});
   }
@@ -216,7 +217,7 @@ taskFiveBtnThree.addEventListener("click", () => {
 
   const seconds = Number(prompt("Enter seconds to add", 45));
   function addSec() {
-    let formattedTime = new Date();
+    const formattedTime = new Date();
     formattedTime.setHours(time.hours, time.minutes, time.seconds + seconds);
     return formattedTime.toLocaleString(navigator.language, {hour: '2-digit', minute: '2-digit', second: '2-digit'});
   }
@@ -224,7 +225,7 @@ taskFiveBtnThree.addEventListener("click", () => {
   
   const minutes = Number(prompt("Enter minutes to add", 45));
   function addMin() {
-    let formattedTime = new Date();
+    const formattedTime = new Date();
     formattedTime.setHours(time.hours, time.minutes + minutes, time.seconds);
     return formattedTime.toLocaleString(navigator.language, {hour: '2-digit', minute: '2-digit', second: '2-digit'});
   }
@@ -232,7 +233,7 @@ taskFiveBtnThree.addEventListener("click", () => {
   
   const hours = Number(prompt("Enter hours to add", 5));
   function addHours() {
-    let formattedTime = new Date();
+    const formattedTime = new Date();
     formattedTime.setHours(time.hours + hours, time.minutes, time.seconds);
     return formattedTime.toLocaleString(navigator.language, {hour: '2-digit', minute: '2-digit', second: '2-digit'});
   }

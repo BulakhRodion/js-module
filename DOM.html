@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM homework</title>
+    <link rel="stylesheet" href="./styles/style.scss">
+  </head>
+  <body>
+    <div class="container container--dom">
+        <div class="first-task-wrapper">
+          <h1 id="songsTaskTitle">SONG LIST</h1>
+          <ol id="songsList"></ol>
+        </div>
+    
+        <div class="second-task-wrapper">
+        <h2>MODAL WINDOW</h2>
+          <button id="modalBtn" class="modal-btn">OPEN MODAL</button>
+          <div id="modalWindow" class="modal">
+            <div class="modal-inner">
+                <p class="modal-text">Hi, i`m first modal, send me some congratulations!</p>
+                <span class="closeBtn" id="close">&times;</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="third-task-wrapper">
+        <h2>LIGHTS TASK</h2>
+          <ul class="lights-list" id="lightsList"></ul>
+          <div class="btn-wrapper">
+              <button id="lightsBtnPrev" class="lights-btn">prev light</button>
+              <button id="lightsBtnNext" class="lights-btn">next light</button>
+          </div>
+        </div>
+    </div>
+
+    <script src="./js/homeworkDOM.js"></script>
+  </body>
+</html>

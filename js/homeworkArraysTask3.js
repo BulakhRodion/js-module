@@ -1,4 +1,4 @@
-let stylesArr = [
+const stylesArr = [
     {
       name: "font-weght",
       value: 400,

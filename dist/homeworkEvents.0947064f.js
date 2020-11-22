@@ -117,203 +117,206 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/homeworkArrays.js":[function(require,module,exports) {
-"use strict";
+})({"js/homeworkEvents.js":[function(require,module,exports) {
+// Создать HTML-страницу для отображения/редактирования текста. При открытии страницы текст отображается с помощью тега div.
+// При нажатии Ctrl + E, вместо div появляется textarea с тем же текстом, который теперь можно редактировать.
+// При нажатии Ctrl + , вместо textarea появляется div с уже измененным текстом. Не забудьте выключить поведение по умолчанию для этих сочетаний клавиш.
+window.onkeydown = function (event) {
+  var sentence = document.getElementsByClassName("text")[0];
+  var textEditor = document.getElementsByClassName("editor")[0];
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.homeworkArrays = void 0;
+  if (event.ctrlKey && event.keyCode === 69) {
+    event.preventDefault();
+    sentence.setAttribute("style", "display: none");
+    textEditor.setAttribute("style", "display: block");
+    return;
+  }
 
-var homeworkArrays = function homeworkArrays() {
-  // 1. Создать массив «Список покупок». Каждый элемент массива является объектом, который содержит название продукта, необходимое количество и куплен или нет. Написать несколько функций для работы с таким массивом.
-  // Вывод всего списка на экран таким образом, чтобы сначала шли некупленные продукты, а потом – купленные.
-  // Добавление покупки в список. Учтите, что при добавлении покупки с уже существующим в списке продуктом, необходимо увеличивать количество в существующей покупке, а не добавлять новую.
-  // Покупка продукта. Функция принимает название продукта и отмечает его как купленный.
-  var taskSixBtnOne = document.getElementById("task6.1");
-  taskSixBtnOne.addEventListener("click", function () {
-    var shoppingList = [{
-      name: "apple",
-      quantity: 8,
-      bought_status: false
-    }, {
-      name: "banana",
-      quantity: 4,
-      bought_status: true
-    }, {
-      name: "lemon",
-      quantity: 10,
-      bought_status: false
-    }]; //FUNCTION 1
+  if (event.ctrlKey && event.keyCode === 188) {
+    //я не понял какая тут должна быть кнопка, так что поставил сочетание ктрл и запятой, потому что там пустота какаято "При нажатии Ctrl + , "
+    event.preventDefault();
+    sentence.setAttribute("style", "display: block");
+    textEditor.setAttribute("style", "display: none");
+    sentence.innerHTML = textEditor.value;
+    return;
+  }
+}; // Создать HTML-страницу с большой таблицей. При клике по заголовку колонки, необходимо отсортировать данные по этой колонке.
+// Учтите, что числовые значения должны сортироваться как числа, а не как строки.
 
-    function showShoppingList(array) {
-      var formattedList = "";
-      array.sort(function (a, b) {
-        return a.bought_status === b.bought_status ? 0 : a.bought_status ? 1 : -1;
-      });
 
-      for (var i in array) {
-        if (array[i].bought_status === false) {
-          array[i].bought_status = "need to buy";
-        }
+var members = [{
+  name: "Alex",
+  age: 25,
+  post: "accauntant",
+  experience: "2 years"
+}, {
+  name: "Alexandra",
+  age: 33,
+  post: "senior accauntant",
+  experience: "8 years"
+}, {
+  name: "Max",
+  age: 20,
+  post: "accauntant",
+  experience: "1 year"
+}, {
+  name: "Sara",
+  age: 19,
+  post: "accauntant",
+  experience: "1 year"
+}, {
+  name: "Mary",
+  age: 27,
+  post: "accauntant",
+  experience: "6 years"
+}]; // const sortedArr = JSON.parse(JSON.stringify(members)).sort();
+// console.log(sortedArr); 
 
-        if (array[i].bought_status === true) {
-          array[i].bought_status = "already bought";
-        }
+var names = {
+  0: "name",
+  1: "age",
+  2: "post",
+  3: "expirience"
+};
+var table = document.getElementById("table");
+table.setAttribute("border", "2");
+table.style.border = "2px solid black";
 
-        formattedList += "".concat(array[i].name, ": ").concat(array[i].quantity, "pcs - ").concat(array[i].bought_status, "\n");
-      }
+function createTable(array) {
+  var tbody = document.createElement("tbody");
+  table.appendChild(tbody);
+  tbody.id = "tableInner";
 
-      return formattedList;
+  function createTableTitles(obj) {
+    var tr = document.createElement("tr");
+    tbody.appendChild(tr);
+
+    for (var i = 0; i < 4; i++) {
+      var th = document.createElement("th");
+      var title = document.createTextNode(obj[i]);
+      th.appendChild(title);
+      tr.appendChild(th);
+      th.id = "title".concat(i + 1);
+    }
+  }
+
+  createTableTitles(names);
+
+  for (var i in array) {
+    var tr = document.createElement("tr");
+    tbody.appendChild(tr);
+
+    for (var j in array[i]) {
+      var td = document.createElement("td");
+      var text = document.createTextNode(array[i][j]);
+      td.appendChild(text);
+      tr.appendChild(td);
+    }
+  }
+}
+
+createTable(members);
+
+function remove() {
+  var elem = document.getElementById("tableInner");
+  elem.remove();
+} // просто пробую разные сортировки
+
+
+function sortByName(array) {
+  array.sort(function (a, b) {
+    var a1 = a.name.toUpperCase();
+    var b2 = b.name.toUpperCase();
+    return a1 == b2 ? 0 : a1 > b2 ? 1 : -1;
+  });
+}
+
+function sortByPost(array) {
+  array.sort(function (a, b) {
+    if (a.post > b.post) {
+      return 1;
     }
 
-    alert(showShoppingList(shoppingList)); //FUNCTION 2
-
-    function addPurchase(array) {
-      var newProduct = prompt("Enter name of your purchase item", "tomato");
-      var quan = Number(prompt("Enter item quantity", 3));
-      var num = null;
-
-      for (var i = 0; i < array.length; i++) {
-        if (newProduct === array[i].name) {
-          num = i;
-        }
-      } //FUNCTION 3
-
-
-      if (num === null) {
-        return shoppingList.push({
-          name: newProduct,
-          quantity: quan,
-          bought_status: true
-        });
-      } else {
-        array[Number(num)].quantity -= quan;
-      }
-
-      if (array[Number(num)].quantity <= 0) {
-        return array[Number(num)].bought_status = true;
-      } else if (array[Number(num)].quantity > 0 && num !== null) {
-        return array[Number(num)].bought_status += " (".concat(quan, " already bought)");
-      }
+    if (a.post < b.post) {
+      return -1;
     }
 
-    addPurchase(shoppingList);
-    alert(showShoppingList(shoppingList)); //FUNCTION 4
+    return 0;
+  });
+}
 
-    function Purchased(array) {
-      var product = prompt("Enter name of item that you purchased", "lemon");
-      var bought = null;
-
-      for (var i = 0; i < array.length; i++) {
-        if (product === array[i].name) {
-          bought = i;
-        }
-      }
-
-      return array[bought].bought_status = true;
+function sortByExp(array) {
+  array.sort(function (a, b) {
+    if (a.experience > b.experience) {
+      return 1;
     }
 
-    Purchased(shoppingList);
-    alert(showShoppingList(shoppingList));
-  }); // 2. Создать массив, описывающий чек в магазине. Каждый элемент массива состоит из названия товара, количества и цены за единицу товара. Написать следующие функции:
-  // Распечатка чека на экран;
-  // Подсчет общей суммы покупки;
-  // Получение самой дорогой покупки в чеке;
-  // Подсчет средней стоимости одного товара в чеке.
-
-  var taskSixBtnTwo = document.getElementById("task6.2");
-  taskSixBtnTwo.addEventListener("click", function () {
-    var check = [{
-      name: "plate",
-      quantity: 4,
-      price: 6.5
-    }, {
-      name: "glass",
-      quantity: 2,
-      price: 8.3
-    }, {
-      name: "bowl",
-      quantity: 1,
-      price: 14
-    }]; //FUNCTION 1
-
-    function printCheck(array) {
-      var formattedList = "";
-
-      for (var i in array) {
-        formattedList += "".concat(array[i].name, ": ").concat(array[i].quantity, "pcs - ").concat(array[i].price, "USD\n");
-      }
-
-      return formattedList;
+    if (a.experience < b.experience) {
+      return -1;
     }
 
-    alert(printCheck(check)); //FUNCTION 2
+    return 0;
+  });
+}
 
-    function getFullPrice(array) {
-      var formattedList = "";
-      var fullPrice = 0;
+function sortByAge(array) {
+  array.sort(function (a, b) {
+    return a.age - b.age;
+  });
+}
 
-      for (var i = 0; i < array.length; i++) {
-        formattedList += "".concat(array[i].name, ": ").concat(array[i].quantity, "pcs - ").concat(array[i].price, "USD\n");
-        fullPrice += array[i].quantity * array[i].price;
-      }
+var title1 = document.getElementById("title1");
 
-      formattedList += "Full price: ".concat(fullPrice, "USD");
-      return formattedList;
-    }
-
-    alert(getFullPrice(check)); //FUNCTION 3
-
-    function getMostExpensive(array) {
-      var fullPrice = 0;
-      var formattedList = "";
-      var mostExpensive = array[0];
-
-      for (var i = 0; i < array.length; i++) {
-        formattedList += "".concat(array[i].name, ": ").concat(array[i].quantity, "pcs - ").concat(array[i].price, "USD\n");
-        fullPrice += array[i].quantity * array[i].price;
-
-        if (array[i].price * array[i].quantity > mostExpensive.price * mostExpensive.quantity) {
-          mostExpensive = array[i];
-        }
-      }
-
-      formattedList += "Full price: ".concat(fullPrice, "USD\n");
-      formattedList += "Most Expensive: ".concat(mostExpensive.name, " - ").concat(mostExpensive.quantity * mostExpensive.price, "USD");
-      return formattedList;
-    }
-
-    alert(getMostExpensive(check)); //FUNCTION 4
-
-    function getAveragePrice(array) {
-      var formattedList = "";
-      var fullPrice = 0;
-      var totalQuantity = 0;
-      var average = 0;
-
-      for (var i = 0; i < array.length; i++) {
-        formattedList += "".concat(array[i].name, ": ").concat(array[i].quantity, "pcs - ").concat(array[i].price, "USD\n");
-        fullPrice += array[i].quantity * array[i].price;
-        totalQuantity += array[i].quantity;
-        average = fullPrice / totalQuantity;
-      }
-
-      formattedList += "Average price: ".concat(average.toFixed(2), "USD");
-      return formattedList;
-    }
-
-    alert(getAveragePrice(check));
-  }); // 3. Создать массив CSS-стилей (цвет, размер шрифта, выравнивание, подчеркивание и т. д.).
-  // Каждый элемент массива – это объект, состоящий из двух свойств: название стиля и значение стиля.
-  // Написать функцию, которая принимает массив стилей и текст, и выводит этот текст с помощью document.write() в тегах <p></p>,
-  //  добавив в открывающий тег атрибут style со всеми стилями, перечисленными в массиве.
-
-  var taskSixBtnFour = document.getElementById("task6.4");
-  taskSixBtnFour.addEventListener("click", function () {});
+title1.onclick = function () {
+  remove();
+  createTable(sortedArr, sortByName(sortedArr));
 };
 
-exports.homeworkArrays = homeworkArrays;
+var title2 = document.getElementById("title2");
+
+title2.onclick = function () {
+  remove();
+  createTable(members, sortByAge(members));
+};
+
+var title3 = document.getElementById("title3");
+
+title3.onclick = function () {
+  remove();
+  createTable(members, sortByPost(members));
+};
+
+var title4 = document.getElementById("title4");
+
+title4.onclick = function () {
+  remove();
+  createTable(members, sortByExp(members));
+}; // Создать HTML-страницу с блоком текста в рамочке. Реализовать возможность изменять размер блока, если зажать мышку в правом нижнем углу и тянуть ее дальше
+
+
+var resizeable = document.getElementById("resizeable");
+var handle = document.getElementById("handle");
+handle.addEventListener("mousedown", mousedown);
+
+function mousedown(event) {
+  window.addEventListener("mousemove", mousemove);
+  window.addEventListener("mouseup", mouseup);
+  var x = event.clientX;
+  var y = event.clientY;
+
+  function mousemove(event) {
+    var coords = resizeable.getBoundingClientRect();
+    resizeable.style.width = coords.width - (x - event.clientX) + "px";
+    resizeable.style.height = coords.height - (y - event.clientY) + "px";
+    x = event.clientX;
+    y = event.clientY;
+  }
+
+  function mouseup() {
+    window.removeEventListener("mousemove", mousemove);
+    window.removeEventListener("mouseup", mouseup);
+  }
+}
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -342,7 +345,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58879" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54635" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -518,5 +521,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/homeworkArrays.js"], null)
-//# sourceMappingURL=/homeworkArrays.a5b4c6d8.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/homeworkEvents.js"], null)
+//# sourceMappingURL=/homeworkEvents.0947064f.js.map

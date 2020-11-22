@@ -117,36 +117,128 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/homeworkArraysTask3.js":[function(require,module,exports) {
-var stylesArr = [{
-  name: "font-weght",
-  value: 400
+})({"js/homeworkDOM.js":[function(require,module,exports) {
+document.body.style.background = "rgb(181, 117, 124)"; //FIRST TASK START
+// 1. Создать страницу, которая выводит нумерованный список песен:
+
+var playList = [{
+  author: "LED ZEPPELIN",
+  song: "STAIRWAY TO HEAVEN"
 }, {
-  name: "color",
-  value: "red"
+  author: "QUEEN",
+  song: "BOHEMIAN RHAPSODY"
 }, {
-  name: "text-transform",
-  value: "uppercase"
+  author: "LYNYRD SKYNYRD",
+  song: "FREE BIRD"
 }, {
-  name: "font-size",
-  value: "60px"
+  author: "DEEP PURPLE",
+  song: "SMOKE ON THE WATER"
 }, {
-  name: "text-align",
-  value: "center"
+  author: "JIMI HENDRIX",
+  song: "ALL ALONG THE WATCHTOWER"
+}, {
+  author: "AC/DC",
+  song: "BACK IN BLACK"
+}, {
+  author: "QUEEN",
+  song: "WE WILL ROCK YOU"
+}, {
+  author: "METALLICA",
+  song: "ENTER SANDMAN"
 }];
 
-var setStyles = function setStyles(array, text) {
-  var addStyle = "<p style=\"";
+window.onload = function createPlayList() {
+  songsTaskTitle.style.color = "#ffffff";
+  var songsList = document.getElementById("songsList");
+  songsList.style.padding = "20px";
 
-  for (var i in array) {
-    addStyle += "".concat(array[i].name, ": ").concat(array[i].value, ";\n");
+  for (var i = 0; i < playList.length; i++) {
+    var li = document.createElement("li");
+    li.innerText = "".concat(playList[i].author, "\n ").concat(playList[i].song);
+    songsList.appendChild(li);
+    li.style.color = "#ffffff";
+  }
+}; //FIRST TASK END
+//SECOND TASK START
+// 2. Создать HTML-страницу с кнопкой "Открыть" и модальным окном. На модальном окне должен быть текст и кнопка "Закрыть".
+//  Изначально модальное окно не отображается. При клике на кнопку "Открыть" появляется модальное окно, на кнопку "Закрыть" – исчезает
+
+
+var modalWindowButton = document.getElementById("modalBtn");
+modalWindowButton.addEventListener("click", function () {
+  var modal = document.getElementById("modalWindow");
+  var close = document.getElementById("close");
+  modal.style.display = "block";
+
+  close.onclick = function () {
+    modal.style.display = "none";
+  };
+}); //SECOND TASK END
+//THIRD TASK START
+// 3. Создать HTML-страницу со светофором и кнопкой, которая переключает светофор на следующий цвет.
+
+function createLights() {
+  var lights = document.getElementById("lightsList");
+
+  for (var i = 0; i < 3; i++) {
+    var li = document.createElement("li");
+    li.classList.add("lights-item");
+    lights.appendChild(li);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", createLights);
+var switcher = null;
+var prev = document.getElementById("lightsBtnPrev");
+prev.addEventListener("click", function () {
+  reset();
+  var list = document.getElementById("lightsList");
+
+  if (switcher === null) {
+    switcher = list.lastChild;
+    switcher.style.background = "green";
+    return;
   }
 
-  addStyle += "\"> ".concat(text, " </p>");
-  document.write(addStyle);
-};
+  switcher = switcher.previousSibling;
 
-setStyles(stylesArr, 'Test sentence');
+  if (switcher !== null) {
+    switcher.style.background = "yellow";
+  }
+
+  if (switcher === list.firstChild) {
+    switcher.style.background = "red";
+  }
+});
+var next = document.getElementById("lightsBtnNext");
+next.addEventListener("click", function () {
+  reset();
+  var list = document.getElementById("lightsList");
+
+  if (switcher === null) {
+    switcher = list.firstChild;
+    switcher.style.background = "red";
+    return;
+  }
+
+  switcher = switcher.nextSibling;
+
+  if (switcher !== null) {
+    switcher.style.background = "yellow";
+  }
+
+  if (switcher === list.lastChild) {
+    switcher.style.background = "green";
+  }
+});
+
+var reset = function reset() {
+  var reset = document.getElementsByClassName("lights-item");
+
+  for (var i = 0; i < reset.length; i++) {
+    reset[i].setAttribute("style", "color:white");
+  }
+};
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -351,5 +443,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/homeworkArraysTask3.js"], null)
-//# sourceMappingURL=/homeworkArraysTask3.0e657159.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/homeworkDOM.js"], null)
+//# sourceMappingURL=/homeworkDOM.1ed174e0.js.map

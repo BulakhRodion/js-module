@@ -6,7 +6,7 @@ export const homeworkArrays = () => {
   // Покупка продукта. Функция принимает название продукта и отмечает его как купленный.
   const taskSixBtnOne = document.getElementById("task6.1");
   taskSixBtnOne.addEventListener("click", () => {
-    let shoppingList = [
+    const shoppingList = [
       {
         name: "apple",
         quantity: 8,
@@ -188,7 +188,7 @@ export const homeworkArrays = () => {
   // Функция сортировки аудиторий по названию (по алфавиту).
   const taskSixBtnFour = document.getElementById("task6.4");
   taskSixBtnFour.addEventListener("click", () => {
-    let audience = [
+    const audience = [
       {
         name: 'first',
         seatsQuantity: 14,
@@ -248,12 +248,12 @@ export const homeworkArrays = () => {
     }
     alert(showDepartmentAudience(audience));
 
-    let groupA = {
+    const groupA = {
       name: 'A',
       studentsQuantity: 16,
       department: 'english',
     }
-    let groupB = {
+    const groupB = {
       name: 'B',
       studentsQuantity: 18,
       department: 'french',
