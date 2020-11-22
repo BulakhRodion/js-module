@@ -51,13 +51,10 @@ const members = [
   {
     name: "Mary",
     age: 27,
-    post: "accauntant",
+    post: "senior accauntant",
     experience: "6 years",
   },
 ];
-
-// const sortedArr = JSON.parse(JSON.stringify(members)).sort();
-// console.log(sortedArr); 
 
 const names = {
   0: "name",
@@ -70,24 +67,28 @@ const table = document.getElementById("table");
 table.setAttribute("border", "2");
 table.style.border = "2px solid black";
 
-function createTable(array) {
+const thead = document.createElement("thead");
+table.appendChild(thead);
+thead.id = "tableHead";
+
+function createTableTitles(obj) {
+  const tr = document.createElement("tr");
+  thead.appendChild(tr);
+  for (let i = 0; i < 4; i++) {
+    const th = document.createElement("th");
+    const title = document.createTextNode(obj[i]);
+    th.appendChild(title);
+    tr.appendChild(th);
+    th.id = `title${i + 1}`;
+  }
+}
+createTableTitles(names);
+
+function createBody(array) {
   const tbody = document.createElement("tbody");
   table.appendChild(tbody);
   tbody.id = "tableInner";
-  
-  function createTableTitles(obj) {
-    const tr = document.createElement("tr");
-    tbody.appendChild(tr);
-    for (let i = 0; i < 4; i++) {
-      const th = document.createElement("th");
-      const title = document.createTextNode(obj[i]);
-      th.appendChild(title);
-      tr.appendChild(th);
-      th.id = `title${i + 1}`;
-    }
-  }
-  createTableTitles(names);
-  
+
   for (let i in array) {
     const tr = document.createElement("tr");
     tbody.appendChild(tr);
@@ -100,7 +101,7 @@ function createTable(array) {
   }
 }
 
-createTable(members);
+createBody(members);
 
 function remove() {
   const elem = document.getElementById("tableInner");
@@ -108,7 +109,6 @@ function remove() {
 }
 
 // просто пробую разные сортировки
-
 function sortByName(array) {
   array.sort(function (a, b) {
     const a1 = a.name.toUpperCase();
@@ -150,23 +150,23 @@ function sortByAge(array) {
 const title1 = document.getElementById("title1");
 title1.onclick = () => {
   remove();
-  createTable(members, sortByName(members));
+  createBody(members, sortByName(members));
 };
 const title2 = document.getElementById("title2");
 title2.onclick = () => {
   remove();
-  createTable(members, sortByAge(members));
+  createBody(members, sortByAge(members));
 };
 
 const title3 = document.getElementById("title3");
 title3.onclick = () => {
   remove();
-  createTable(members, sortByPost(members));
+  createBody(members, sortByPost(members));
 };
 const title4 = document.getElementById("title4");
 title4.onclick = () => {
   remove();
-  createTable(members, sortByExp(members));
+  createBody(members, sortByExp(members));
 };
 
 // Создать HTML-страницу с блоком текста в рамочке. Реализовать возможность изменять размер блока, если зажать мышку в правом нижнем углу и тянуть ее дальше

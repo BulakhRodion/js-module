@@ -167,11 +167,9 @@ var members = [{
 }, {
   name: "Mary",
   age: 27,
-  post: "accauntant",
+  post: "senior accauntant",
   experience: "6 years"
-}]; // const sortedArr = JSON.parse(JSON.stringify(members)).sort();
-// console.log(sortedArr); 
-
+}];
 var names = {
   0: "name",
   1: "age",
@@ -181,26 +179,29 @@ var names = {
 var table = document.getElementById("table");
 table.setAttribute("border", "2");
 table.style.border = "2px solid black";
+var thead = document.createElement("thead");
+table.appendChild(thead);
+thead.id = "tableHead";
 
-function createTable(array) {
+function createTableTitles(obj) {
+  var tr = document.createElement("tr");
+  thead.appendChild(tr);
+
+  for (var i = 0; i < 4; i++) {
+    var th = document.createElement("th");
+    var title = document.createTextNode(obj[i]);
+    th.appendChild(title);
+    tr.appendChild(th);
+    th.id = "title".concat(i + 1);
+  }
+}
+
+createTableTitles(names);
+
+function createBody(array) {
   var tbody = document.createElement("tbody");
   table.appendChild(tbody);
   tbody.id = "tableInner";
-
-  function createTableTitles(obj) {
-    var tr = document.createElement("tr");
-    tbody.appendChild(tr);
-
-    for (var i = 0; i < 4; i++) {
-      var th = document.createElement("th");
-      var title = document.createTextNode(obj[i]);
-      th.appendChild(title);
-      tr.appendChild(th);
-      th.id = "title".concat(i + 1);
-    }
-  }
-
-  createTableTitles(names);
 
   for (var i in array) {
     var tr = document.createElement("tr");
@@ -215,7 +216,7 @@ function createTable(array) {
   }
 }
 
-createTable(members);
+createBody(members);
 
 function remove() {
   var elem = document.getElementById("tableInner");
@@ -269,28 +270,28 @@ var title1 = document.getElementById("title1");
 
 title1.onclick = function () {
   remove();
-  createTable(sortedArr, sortByName(sortedArr));
+  createBody(members, sortByName(members));
 };
 
 var title2 = document.getElementById("title2");
 
 title2.onclick = function () {
   remove();
-  createTable(members, sortByAge(members));
+  createBody(members, sortByAge(members));
 };
 
 var title3 = document.getElementById("title3");
 
 title3.onclick = function () {
   remove();
-  createTable(members, sortByPost(members));
+  createBody(members, sortByPost(members));
 };
 
 var title4 = document.getElementById("title4");
 
 title4.onclick = function () {
   remove();
-  createTable(members, sortByExp(members));
+  createBody(members, sortByExp(members));
 }; // Создать HTML-страницу с блоком текста в рамочке. Реализовать возможность изменять размер блока, если зажать мышку в правом нижнем углу и тянуть ее дальше
 
 
@@ -345,7 +346,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54635" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60174" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
