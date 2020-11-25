@@ -172,12 +172,16 @@ $(document).ready(function () {
   $("#stars li:nth-child(4)").click(); //rating changing according to star selected
 
   var ratingValue = 7.8;
+  var counter = 1;
+  var res = 0;
   $('.cards__game-rating-score').text(ratingValue);
   $('.cards__rating-circle--second').css('stroke-dashoffset', "calc(220 - (220 * ".concat(ratingValue, ") / 10)"));
   $("#stars li").on("click", function () {
+    counter++;
     var newRating = $(this).data("value") * 2;
-    ratingValue = (7.8 + newRating) / 2;
-    $('.cards__game-rating-score').text(ratingValue);
+    res += newRating;
+    ratingValue = (7.8 + res) / counter;
+    $('.cards__game-rating-score').text(ratingValue.toFixed(1));
     $('.cards__rating-circle--second').css('stroke-dashoffset', "calc(220 - (220 * ".concat(ratingValue, ") / 10)"));
   });
 });
@@ -209,7 +213,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58994" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59308" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

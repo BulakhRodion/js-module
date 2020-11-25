@@ -56,14 +56,18 @@ $(document).ready(function () {
 
     //rating changing according to star selected
     let ratingValue = 7.8;
+    let counter = 1;
+    let res = 0;
     $('.cards__game-rating-score').text(ratingValue);
 
     $('.cards__rating-circle--second').css('stroke-dashoffset', `calc(220 - (220 * ${ratingValue}) / 10)`);
 
     $("#stars li").on("click", function () {
+      counter++
       const newRating = $(this).data("value") * 2;
-      ratingValue = (7.8 + newRating) / 2;
-      $('.cards__game-rating-score').text(ratingValue);
+      res += newRating;
+      ratingValue = (7.8 + res) / counter;
+      $('.cards__game-rating-score').text(ratingValue.toFixed(1));
       $('.cards__rating-circle--second').css('stroke-dashoffset', `calc(220 - (220 * ${ratingValue}) / 10)`);
     });
 });

@@ -398,7 +398,7 @@ th {
   stroke-dashoffset: 0;
 }
 .cards__game-rating-circle > .cards__rating-circle--second {
-  stroke: url(#gradient);
+  stroke: url(#a);
   stroke-width: 4;
 }
 .cards__description {
