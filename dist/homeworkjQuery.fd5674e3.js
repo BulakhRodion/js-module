@@ -117,207 +117,70 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/homeworkEvents.js":[function(require,module,exports) {
-// Создать HTML-страницу для отображения/редактирования текста. При открытии страницы текст отображается с помощью тега div.
-// При нажатии Ctrl + E, вместо div появляется textarea с тем же текстом, который теперь можно редактировать.
-// При нажатии Ctrl + , вместо textarea появляется div с уже измененным текстом. Не забудьте выключить поведение по умолчанию для этих сочетаний клавиш.
-window.onkeydown = function (event) {
-  var sentence = document.getElementsByClassName("text")[0];
-  var textEditor = document.getElementsByClassName("editor")[0];
-
-  if (event.ctrlKey && event.keyCode === 69) {
+})({"js/homeworkjQuery.js":[function(require,module,exports) {
+$(document).ready(function () {
+  //Tabs function
+  $(".cards__tabs-trigger").on("click", function (event) {
     event.preventDefault();
-    sentence.setAttribute("style", "display: none");
-    textEditor.setAttribute("style", "display: block");
-    return;
-  }
-
-  if (event.ctrlKey && event.keyCode === 188) {
-    //я не понял какая тут должна быть кнопка, так что поставил сочетание ктрл и запятой, потому что там пустота какаято "При нажатии Ctrl + , "
-    event.preventDefault();
-    sentence.setAttribute("style", "display: block");
-    textEditor.setAttribute("style", "display: none");
-    sentence.innerHTML = textEditor.value;
-    return;
-  }
-}; // Создать HTML-страницу с большой таблицей. При клике по заголовку колонки, необходимо отсортировать данные по этой колонке.
-// Учтите, что числовые значения должны сортироваться как числа, а не как строки.
-
-
-var members = [{
-  name: "Alex",
-  age: 25,
-  post: "accauntant",
-  experience: "2 years"
-}, {
-  name: "Alexandra",
-  age: 33,
-  post: "senior accauntant",
-  experience: "8 years"
-}, {
-  name: "Max",
-  age: 20,
-  post: "accauntant",
-  experience: "1 year"
-}, {
-  name: "Sara",
-  age: 19,
-  post: "accauntant",
-  experience: "1 year"
-}, {
-  name: "Mary",
-  age: 27,
-  post: "senior accauntant",
-  experience: "6 years"
-}];
-var names = {
-  0: "name",
-  1: "age",
-  2: "post",
-  3: "expirience"
-};
-var table = document.getElementById("table");
-table.setAttribute("border", "2");
-table.style.border = "2px solid black";
-var thead = document.createElement("thead");
-table.appendChild(thead);
-thead.id = "tableHead";
-
-function createTableTitles(obj) {
-  var tr = document.createElement("tr");
-  thead.appendChild(tr);
-
-  for (var i = 0; i < 4; i++) {
-    var th = document.createElement("th");
-    var title = document.createTextNode(obj[i]);
-    th.appendChild(title);
-    tr.appendChild(th);
-    th.id = "title".concat(i + 1);
-  }
-}
-
-createTableTitles(names);
-
-function createBody(array) {
-  var tbody = document.createElement("tbody");
-  table.appendChild(tbody);
-  tbody.id = "tableInner";
-
-  for (var i in array) {
-    var tr = document.createElement("tr");
-    tbody.appendChild(tr);
-
-    for (var j in array[i]) {
-      var td = document.createElement("td");
-      var text = document.createTextNode(array[i][j]);
-      td.appendChild(text);
-      tr.appendChild(td);
-    }
-  }
-}
-
-createBody(members);
-
-function remove() {
-  var elem = document.getElementById("tableInner");
-  elem.remove();
-} // просто пробую разные сортировки
-
-
-function sortByName(array) {
-  array.sort(function (a, b) {
-    var a1 = a.name.toUpperCase();
-    var b2 = b.name.toUpperCase();
-    return a1 == b2 ? 0 : a1 > b2 ? 1 : -1;
+    $(this).addClass("active-trigger").siblings().removeClass("active-trigger");
+    $($(this).attr("href")).addClass("active").siblings().removeClass("active");
   });
-}
+  $(".cards__tabs-trigger:first").click(); //Bounse btn animation
 
-function sortByPost(array) {
-  array.sort(function (a, b) {
-    if (a.post > b.post) {
-      return 1;
-    }
-
-    if (a.post < b.post) {
-      return -1;
-    }
-
-    return 0;
+  $(".cards__link").mouseenter(function () {
+    Bounce($(this), 3, "15px", 300);
   });
-}
 
-function sortByExp(array) {
-  array.sort(function (a, b) {
-    if (a.experience > b.experience) {
-      return 1;
+  function Bounce(element, times, distance, speed) {
+    for (var _i = 0; _i < times; _i++) {
+      element.animate({
+        marginTop: "-=" + distance
+      }, speed).animate({
+        marginTop: "+=" + distance
+      }, speed);
+    }
+  } //Rating stars hover
+
+
+  $("#stars li").on("mouseover", function () {
+    var onStar = parseInt($(this).data("value"), 10);
+    $(this).parent().children("li.star").each(function (e) {
+      if (e < onStar) {
+        $(this).addClass("hover");
+      } else {
+        $(this).removeClass("hover");
+      }
+    });
+  }).on("mouseout", function () {
+    $(this).parent().children("li.star").each(function (e) {
+      $(this).removeClass("hover");
+    });
+  }); //Rating stars select
+
+  $("#stars li").on("click", function () {
+    var onStar = parseInt($(this).data("value"), 10);
+    var stars = $(this).parent().children("li.star");
+
+    for (i = 0; i < stars.length; i++) {
+      $(stars[i]).removeClass("selected");
     }
 
-    if (a.experience < b.experience) {
-      return -1;
+    for (i = 0; i < onStar; i++) {
+      $(stars[i]).addClass("selected");
     }
-
-    return 0;
   });
-}
+  $("#stars li:nth-child(4)").click(); //rating changing according to star selected
 
-function sortByAge(array) {
-  array.sort(function (a, b) {
-    return a.age - b.age;
+  var ratingValue = 7.8;
+  $('.cards__game-rating-score').text(ratingValue);
+  $('circle:nth-child(3)').css('stroke-dashoffset', "calc(220 - (220 * ".concat(ratingValue, ") / 10)"));
+  $("#stars li").on("click", function () {
+    var newRating = $(this).data("value") * 2;
+    ratingValue = (7.8 + newRating) / 2;
+    $('.cards__game-rating-score').text(ratingValue);
+    $('circle:nth-child(3)').css('stroke-dashoffset', "calc(220 - (220 * ".concat(ratingValue, ") / 10)"));
   });
-}
-
-var title1 = document.getElementById("title1");
-
-title1.onclick = function () {
-  remove();
-  createBody(members, sortByName(members));
-};
-
-var title2 = document.getElementById("title2");
-
-title2.onclick = function () {
-  remove();
-  createBody(members, sortByAge(members));
-};
-
-var title3 = document.getElementById("title3");
-
-title3.onclick = function () {
-  remove();
-  createBody(members, sortByPost(members));
-};
-
-var title4 = document.getElementById("title4");
-
-title4.onclick = function () {
-  remove();
-  createBody(members, sortByExp(members));
-}; // Создать HTML-страницу с блоком текста в рамочке. Реализовать возможность изменять размер блока, если зажать мышку в правом нижнем углу и тянуть ее дальше
-
-
-var resizeable = document.getElementById("resizeable");
-var handle = document.getElementById("handle");
-handle.addEventListener("mousedown", mousedown);
-
-function mousedown(event) {
-  window.addEventListener("mousemove", mousemove);
-  window.addEventListener("mouseup", mouseup);
-  var x = event.clientX;
-  var y = event.clientY;
-
-  function mousemove(event) {
-    var coords = resizeable.getBoundingClientRect();
-    resizeable.style.width = coords.width - (x - event.clientX) + "px";
-    resizeable.style.height = coords.height - (y - event.clientY) + "px";
-    x = event.clientX;
-    y = event.clientY;
-  }
-
-  function mouseup() {
-    window.removeEventListener("mousemove", mousemove);
-    window.removeEventListener("mouseup", mouseup);
-  }
-}
+});
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -522,5 +385,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/homeworkEvents.js"], null)
-//# sourceMappingURL=/homeworkEvents.0947064f.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/homeworkjQuery.js"], null)
+//# sourceMappingURL=/homeworkjQuery.fd5674e3.js.map
