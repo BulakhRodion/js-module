@@ -173,12 +173,12 @@ $(document).ready(function () {
 
   var ratingValue = 7.8;
   $('.cards__game-rating-score').text(ratingValue);
-  $('circle:nth-child(3)').css('stroke-dashoffset', "calc(220 - (220 * ".concat(ratingValue, ") / 10)"));
+  $('.cards__rating-circle--second').css('stroke-dashoffset', "calc(220 - (220 * ".concat(ratingValue, ") / 10)"));
   $("#stars li").on("click", function () {
     var newRating = $(this).data("value") * 2;
     ratingValue = (7.8 + newRating) / 2;
     $('.cards__game-rating-score').text(ratingValue);
-    $('circle:nth-child(3)').css('stroke-dashoffset', "calc(220 - (220 * ".concat(ratingValue, ") / 10)"));
+    $('.cards__rating-circle--second').css('stroke-dashoffset', "calc(220 - (220 * ".concat(ratingValue, ") / 10)"));
   });
 });
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -209,7 +209,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58181" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58564" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

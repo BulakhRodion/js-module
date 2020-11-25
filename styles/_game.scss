@@ -149,11 +149,11 @@ $style: "cards";
     transform: rotate(-90deg);
     stroke-width: 2;
     fill: none;
-    & > circle:nth-child(2) {
+    & > .cards__rating-circle {
       stroke: #AAADBB;
       stroke-dashoffset: 0;
     }
-    & > circle:nth-child(3) {
+    & > .cards__rating-circle--second {
       stroke: url(#gradient);
       stroke-width: 4;
     }

@@ -58,12 +58,12 @@ $(document).ready(function () {
     let ratingValue = 7.8;
     $('.cards__game-rating-score').text(ratingValue);
 
-    $('circle:nth-child(3)').css('stroke-dashoffset', `calc(220 - (220 * ${ratingValue}) / 10)`);
+    $('.cards__rating-circle--second').css('stroke-dashoffset', `calc(220 - (220 * ${ratingValue}) / 10)`);
 
     $("#stars li").on("click", function () {
       const newRating = $(this).data("value") * 2;
       ratingValue = (7.8 + newRating) / 2;
       $('.cards__game-rating-score').text(ratingValue);
-      $('circle:nth-child(3)').css('stroke-dashoffset', `calc(220 - (220 * ${ratingValue}) / 10)`);
+      $('.cards__rating-circle--second').css('stroke-dashoffset', `calc(220 - (220 * ${ratingValue}) / 10)`);
     });
 });
