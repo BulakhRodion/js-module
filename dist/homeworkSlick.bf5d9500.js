@@ -117,72 +117,20 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/homeworkjQuery.js":[function(require,module,exports) {
+})({"js/homeworkSlick.js":[function(require,module,exports) {
 $(document).ready(function () {
-  //Tabs function
-  $(".cards__tabs-trigger").on("click", function (event) {
-    event.preventDefault();
-    $(this).addClass("active-trigger").siblings().removeClass("active-trigger");
-    $($(this).attr("href")).addClass("active").siblings().removeClass("active");
+  $('.slick__slider').slick({
+    slidesToShow: 4,
+    slidesToScroll: 1
   });
-  $(".cards__tabs-trigger:first").click(); //Bounse btn animation
-
-  $(".cards__link").mouseenter(function () {
-    Bounce($(this), 3, "15px", 300);
+  $('.slick-arrow').text('');
+  $('.slick-active:last').css('opacity', 0.4);
+  $('.slick-next').on('click', function () {
+    $('.slick-active:last').css('opacity', 0.2).prev().css('opacity', 1);
   });
-
-  function Bounce(element, times, distance, speed) {
-    for (var _i = 0; _i < times; _i++) {
-      element.animate({
-        marginTop: "-=" + distance
-      }, speed).animate({
-        marginTop: "+=" + distance
-      }, speed);
-    }
-  } //Rating stars hover
-
-
-  $("#stars li").on("mouseover", function () {
-    var onStar = parseInt($(this).data("value"), 10);
-    $(this).parent().children("li.star").each(function (e) {
-      if (e < onStar) {
-        $(this).addClass("hover");
-      } else {
-        $(this).removeClass("hover");
-      }
-    });
-  }).on("mouseout", function () {
-    $(this).parent().children("li.star").each(function (e) {
-      $(this).removeClass("hover");
-    });
-  }); //Rating stars select
-
-  $("#stars li").on("click", function () {
-    var onStar = parseInt($(this).data("value"), 10);
-    var stars = $(this).parent().children("li.star");
-
-    for (i = 0; i < stars.length; i++) {
-      $(stars[i]).removeClass("selected");
-    }
-
-    for (i = 0; i < onStar; i++) {
-      $(stars[i]).addClass("selected");
-    }
-  });
-  $("#stars li:nth-child(4)").click(); //rating changing according to star selected
-
-  var ratingValue = 7.8;
-  var counter = 1;
-  var res = 0;
-  $('.cards__game-rating-score').text(ratingValue);
-  $('.cards__rating-circle--second').css('stroke-dashoffset', "calc(220 - (220 * ".concat(ratingValue, ") / 10)"));
-  $("#stars li").on("click", function () {
-    counter++;
-    var newRating = $(this).data("value") * 2;
-    res += newRating;
-    ratingValue = (7.8 + res) / counter;
-    $('.cards__game-rating-score').text(ratingValue.toFixed(1));
-    $('.cards__rating-circle--second').css('stroke-dashoffset', "calc(220 - (220 * ".concat(ratingValue, ") / 10)"));
+  $('.slick-prev').on('click', function () {
+    $('.slick-active:last').css('opacity', 0.2).next().css('opacity', 1);
+    $('.slick-active:first').css('opacity', 1);
   });
 });
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -389,5 +337,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/homeworkjQuery.js"], null)
-//# sourceMappingURL=/homeworkjQuery.fd5674e3.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/homeworkSlick.js"], null)
+//# sourceMappingURL=/homeworkSlick.bf5d9500.js.map
